@@ -1,0 +1,2 @@
+# hindibot
+discord bot
