@@ -8,14 +8,15 @@ const {
 const ytdl = require("ytdl-core");
 const gTTS = require("gtts");
 const { REST, Routes } = require("discord.js");
+require('dotenv').config()
+
 
 const client = new Client({
   intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildVoiceStates],
 });
 
 // ... (the rest of your code remains the same)
-const TOKEN =
-  "MTIyNzIxMzIzNjc0Nzg5ODk3MA.Gd6oQ-.VBDyli2fWxj-mbhKbEJbCzh6ImfYcDOYSnYXyQ";
+const TOKEN =process.env.DISTOKEN;
 const CLIENT_ID = "1227213236747898970";
 const AUTHORIZED_USER_ID = "786247986681479240"; 
 client.on("ready", () => {
