@@ -1,2 +1,2 @@
-# hindibot
-discord bot
+# parthbot
+discord bot tts
