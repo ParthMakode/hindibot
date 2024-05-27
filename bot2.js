@@ -1,4 +1,5 @@
 const express = require('express')
+
 const app = express()
 const port = 3000
 const { Client, GatewayIntentBits, EmbedBuilder } = require("discord.js");
@@ -12,7 +13,8 @@ const ytdl = require("ytdl-core");
 const gTTS = require("gtts");
 const { REST, Routes } = require("discord.js");
 require('dotenv').config()
-
+const cron = require('node-cron'); // Import node-cron
+const http = require('http'); 
 
 const client = new Client({
   intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildVoiceStates],
@@ -124,3 +126,11 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
+
+// Schedule the cron job to run every 5 minutes
+cron.schedule('*/5 * * * *', () => {
+  // Make a request to the default route
+  http.get(`http://localhost:${port}`, (res) => {
+    console.log(`Status Code: ${res.statusCode}`);
+  });
+});
