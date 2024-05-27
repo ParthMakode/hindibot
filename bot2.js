@@ -56,7 +56,7 @@ client.on("interactionCreate", async (interaction) => {
     const player = createAudioPlayer();
     connection.subscribe(player);
 
-    const gtts = new gTTS(text, "en");
+    const gtts = new gTTS(text, "hi");
     gtts.save("tts.mp3", (err, result) => {
       if (err) {
         console.error(err);
