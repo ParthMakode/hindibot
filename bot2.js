@@ -15,12 +15,15 @@ const { REST, Routes } = require("discord.js");
 require('dotenv').config()
 const cron = require('node-cron'); // Import node-cron
 const http = require('http'); 
-
+let currentClient = null;
 function startbot(){
+  if (currentClient) {
+    currentClient.destroy();
+  }
   const client = new Client({
     intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildVoiceStates],
   });
-  
+  currentClient = client;
   // ... (the rest of your code remains the same)
   const TOKEN =process.env.DISTOKEN;
   const CLIENT_ID = "1227213236747898970";
@@ -125,18 +128,29 @@ function startbot(){
 // process.stdin.resume()
 app.get('/', (req, res) => {
   res.send('hindibot here')
+
 })
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
+  trystartbot()
 })
 
+function trystartbot(){
+  try {
+    startbot(   )
+  } catch (error) {
+    console.log(" error in bot")
+    startbot()
+  }
+}
 // Schedule the cron job to run every 5 minutes
 cron.schedule('*/5 * * * *', () => {
   // Make a request to the default route
-  http.get(`http://localhost:${port}`, (res) => {
+  http.get(`https://localhost:${port}`, (res) => {
     console.log(`Status Code: ${res.statusCode}`);
-    startbot()
+    
+    trystartbot()
   });
 });
 
