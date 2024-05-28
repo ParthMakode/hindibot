@@ -129,7 +129,7 @@ function startbot() {
 app.get("/", (req, res) => {
   res.send("hindibot here");
 });
-cron.schedule("*/10 * * * * *", () => {
+cron.schedule("*/10 * * * * ", () => {
   // Make a request to the default route
   const CRONURL= process.env.CRONURL;
   fetch(`${CRONURL}`)
