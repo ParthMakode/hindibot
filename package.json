@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node build/bot2.js",
-    "build": "esbuild bot2.js --bundle --platform=node --outfile=build/bot2.js"
+    "build": "npx esbuild bot2.js --bundle --platform=node --outfile=build/bot2.js"
   },
   "author": "",
   "license": "ISC",
@@ -21,6 +21,6 @@
     "ytdl-core": "^4.11.5"
   },
   "devDependencies": {
-    "esbuild": "^0.21.3"
+    "esbuild": "^0.21.4"
   }
 }
