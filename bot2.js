@@ -139,3 +139,6 @@ cron.schedule('*/5 * * * *', () => {
     startbot()
   });
 });
+
+// npx esbuild bot2.js --bundle --platform=node --outfile=build/bot2.js --external:express --external:discord.js --external:@discordjs/voice --external:ytdl-core --external:gtts --external:dotenv
+// esbuild bot2.js --bundle --platform=node --outfile=build/bot2.js

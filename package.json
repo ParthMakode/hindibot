@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node build/bot2.js",
-    "build": "npx esbuild bot2.js --bundle --platform=node --outfile=build/bot2.js"
+    "build": "npx esbuild bot2.js --bundle --platform=node --outfile=build/bot2.js --external:express --external:discord.js --external:@discordjs/voice --external:ytdl-core --external:gtts --external:dotenv"
   },
   "author": "",
   "license": "ISC",
