@@ -21,6 +21,6 @@
     "ytdl-core": "^4.11.5"
   },
   "devDependencies": {
-    "esbuild": "0.21.3"
+    "esbuild": "^0.21.3"
   }
 }
