@@ -42,9 +42,9 @@ function startbot() {
       if (interaction.commandName === "hin") {
         const text = interaction.options.getString("text");
         console.log(text);
-        if (interaction.options.getString("text") == "exit") {
-          connection.destroy();
-        }
+        // if (interaction.options.getString("text") == "exit") {
+        //   connection.destroy();
+        // }
 
         const voiceChannel = interaction.member.voice.channel;
         if (!voiceChannel) {
@@ -63,7 +63,9 @@ function startbot() {
 
         const player = createAudioPlayer();
         connection.subscribe(player);
-
+        if (interaction.options.getString("text") == "exit") {
+            connection.destroy();
+          }
         const gtts = new gTTS(text, "hi");
         gtts.save("tts.mp3", (err, result) => {
           if (err) {
