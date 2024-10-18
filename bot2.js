@@ -93,8 +93,16 @@ function startbot() {
               // connection.destroy();
             });
           }
-
-          interaction.reply(text);
+          try {
+            interaction.reply(text);
+          } catch (error) {
+            if (error.code === 10062) {
+              console.error("Unknown interaction");
+            } else {
+              console.error("Unexpected error", error);
+            }
+          }
+          // interaction.reply(text);
         });
       }
     });
