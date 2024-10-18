@@ -80,7 +80,12 @@ function startbot() {
           } else if (text == "gyatt") {
             const resource = createAudioResource("./gyatt.mp3");
             player.play(resource);
-          } else {
+          }
+          else if (text == "humi") {
+            const resource = createAudioResource("./humi.mp3");
+            player.play(resource);
+          }
+           else {
             const resource = createAudioResource("./tts.mp3");
             player.play(resource);
 
