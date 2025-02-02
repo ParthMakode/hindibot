@@ -36,10 +36,13 @@ function startbot() {
   try {
     client.on("interactionCreate", async (interaction) => {
       if (!interaction.isChatInputCommand()) return;
-      if (interaction.user.id !== AUTHORIZED_USER_ID) {
-        return interaction.reply("You are not authorized to use this command.");
-      }
+      // if (interaction.user.id !== AUTHORIZED_USER_ID) {
+      //   return interaction.reply("You are not authorized to use this command.");
+      // }
       if (interaction.commandName === "hin") {
+        if (interaction.user.id !== AUTHORIZED_USER_ID) {
+          return interaction.reply("You are not authorized to use this command.");
+        }
         const text = interaction.options.getString("text");
         console.log(text);
         // if (interaction.options.getString("text") == "exit") {
