@@ -105,6 +105,75 @@ function startbot() {
           // interaction.reply(text);
         });
       }
+      if (interaction.commandName === "namit") {
+        if (interaction.user.id !== "690196843929403653" || interaction.user.id == AUTHORIZED_USER_ID) {
+          return interaction.reply("You are not Namit . WHO ARE YOU IMPOSTER !!??!!");
+        }
+        const text = interaction.options.getString("text");
+        console.log(text);
+        // if (interaction.options.getString("text") == "exit") {
+        //   connection.destroy();
+        // }
+
+        const voiceChannel = interaction.member.voice.channel;
+        if (!voiceChannel) {
+          return interaction.reply(
+            "You need to be in a voice channel to use this command."
+          );
+        }
+
+        const connection = joinVoiceChannel({
+          channelId: voiceChannel.id,
+          guildId: interaction.guildId,
+          adapterCreator: interaction.guild.voiceAdapterCreator,
+          selfDeaf: true, // Add this line
+          selfMute: true, // Add this line
+        });
+
+        const player = createAudioPlayer();
+        connection.subscribe(player);
+        if (interaction.options.getString("text") == "exit") {
+            connection.destroy();
+          }
+        const gtts = new gTTS(text+" , said namit.", "hi");
+        gtts.save("tts.mp3", (err, result) => {
+          if (err) {
+            console.error(err);
+            return interaction.reply(
+              "An error occurred while generating the TTS audio."
+            );
+          }
+          if (text == "mew") {
+            const resource = createAudioResource("./mew.mp3");
+            player.play(resource);
+          } else if (text == "gyatt") {
+            const resource = createAudioResource("./gyatt.mp3");
+            player.play(resource);
+          }
+          else if (text == "humi") {
+            const resource = createAudioResource("./humi.mp3");
+            player.play(resource);
+          }
+           else {
+            const resource = createAudioResource("./tts.mp3");
+            player.play(resource);
+
+            player.on(AudioPlayerStatus.Idle, () => {
+              // connection.destroy();
+            });
+          }
+          try {
+            interaction.reply(text+" , said namit.");
+          } catch (error) {
+            if (error.code === 10062) {
+              console.error("Unknown interaction");
+            } else {
+              console.error("Unexpected error", error);
+            }
+          }
+          // interaction.reply(text);
+        });
+      }
     });
   } catch (error) {
     startbot();
@@ -123,6 +192,18 @@ function startbot() {
         },
       ],
     },
+    {
+      name: "namit",
+      description: "Make the bot speak text in a voice channel for namit",
+      options: [
+        {
+          name: "text",
+          description: "The textnamit want the bot to speak",
+          type: 3, // String
+          required: true,
+        },
+      ],
+    }
   ];
 
   const rest = new REST({ version: "10" }).setToken(TOKEN);
