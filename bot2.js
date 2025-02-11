@@ -88,6 +88,10 @@ function startbot() {
             const resource = createAudioResource("./humi.mp3");
             player.play(resource);
           }
+          else if (text == "mcstan") {
+            const resource = createAudioResource("./tmkc_mcstan.mp3");
+            player.play(resource);
+          }
            else {
             const resource = createAudioResource("./tts.mp3");
             player.play(resource);
